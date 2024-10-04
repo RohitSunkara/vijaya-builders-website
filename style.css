@@ -14,6 +14,159 @@ body {
     overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
+/* Unique Menu Icon */
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-right: 20px;
+    transition: all 0.6s ease-in-out; /* Smooth overall transform */
+    position: relative; /* Needed for pseudo-elements */
+}
+
+.menu-icon div {
+    width: 100%;
+    height: 4px;
+    background-color: #ff6600; /* Set to orange */
+    border-radius: 2px;
+    transition: all 0.6s ease-in-out; /* Smooth transition for each bar */
+}
+
+/* Complex Menu Icon Animation on Hover */
+.menu-icon:hover {
+    transform: rotate(180deg) scale(1.2); /* Rotate and scale the whole icon */
+}
+
+/* Complex hover effects on individual lines */
+.menu-icon:hover div:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    background-color: #ff6600; /* Keep the color consistent */
+}
+
+.menu-icon:hover div:nth-child(2) {
+    opacity: 0; /* Make the middle line disappear */
+}
+
+.menu-icon:hover div:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    background-color: #ff6600; /* Keep the color consistent */
+}
+
+/* Additional animated pseudo-element effect for extra uniqueness */
+.menu-icon::before,
+.menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #ff6600;
+    border-radius: 2px;
+    transition: all 0.6s ease-in-out;
+    opacity: 0; /* Initially hidden */
+}
+
+/* Animate pseudo-elements on hover */
+.menu-icon:hover::before {
+    top: -12px;
+    transform: rotate(45deg);
+    opacity: 1;
+}
+
+.menu-icon:hover::after {
+    bottom: -12px;
+    transform: rotate(-45deg);
+    opacity: 1;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    position: fixed;
+    top: 60px; /* Adjust to match header height */
+    right: 20px;
+    width: 220px;
+    background: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2000; /* Ensure it stays on top of other elements */
+    border-radius: 15px; /* Rounded edges */
+    animation: menuPopup 0.6s ease forwards; /* Complex animation */
+}
+
+/* Show the menu when toggled */
+.nav-menu.show {
+    display: flex;
+}
+
+/* Menu List Styling */
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-list li {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.5s forwards;
+    animation-delay: var(--delay);
+    display: flex;
+    align-items: center; /* Center icon and text */
+}
+
+/* Menu Item Link Styling */
+.menu-list a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+    padding: 10px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Icons for Menu Items */
+.menu-list i {
+    margin-right: 10px; /* Space between icon and text */
+    color: #ff6600; /* Icon color */
+}
+
+/* Hover Effect */
+.menu-list a:hover {
+    color: #ff6600;
+    transform: scale(1.1);
+}
+
+/* Complicated Animation: Slide and Fade */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Menu Popup Animation */
+@keyframes menuPopup {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Header Styling */
 header {
     background-color: rgba(240, 240, 240, 0.8); /* 80% transparent light grey */
@@ -40,45 +193,6 @@ header {
     margin-top: 8px;
 }
 
-/* Navigation Styling */
-nav {
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    color: #333;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px 10px;
-    font-weight: 500;
-    position: relative; /* For underline animation */
-    transition: color 0.3s ease; /* Smooth color transition */
-}
-
-/* Animation for the underline effect */
-nav a::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: #ff6600;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s ease;
-}
-
-/* Hover Effect */
-nav a:hover {
-    color: #ff6600; /* Change text color on hover */
-}
-
-/* Underline Effect on Hover */
-nav a:hover::before {
-    width: 100%; /* Full underline width on hover */
-}
-
-
 /* Hero Section */
 .hero {
     display: flex;
@@ -89,8 +203,8 @@ nav a:hover::before {
     overflow: hidden; /* Hide overflow to ensure no scrollbars appear */
     position: relative; /* Set relative position for absolute children */
     margin-top: 60px; /* Add margin to offset fixed header */
+    z-index: 1; /* Make sure it's behind the nav menu */
 }
-
 
 /* Background Image Container */
 .hero-image-container {
@@ -131,7 +245,7 @@ nav a:hover::before {
     justify-content: center;
     align-items: center; /* Center the text horizontally */
     color: black; /* Text color */
-    text-align: center; /* Center text */
+    text-align: center;
     z-index: 2; /* Ensure the text is on top of the image */
     width: 100%; /* Ensure the text container spans the full width */
     max-width: 100%; /* Prevent the text from being squished */
@@ -228,22 +342,6 @@ nav a:hover::before {
     }
 }
 
-/* About Section */
-.about {
-    padding: 40px 20px;
-    text-align: center;
-}
-
-/* Project Section */
-.projects {
-    padding: 40px 20px;
-    background-color: #f4f4f4;
-}
-
-.project {
-    margin: 20px 0;
-}
-
 /* Footer Styling */
 footer {
     background-color: rgba(240, 240, 240, 0.8); /* Light grey background */
@@ -324,7 +422,6 @@ footer {
     color: #ff6600; /* Change color on hover */
 }
 
-
 /* Animation */
 .footer-content {
     animation: fadeIn 1s ease-in-out;
@@ -345,4 +442,4 @@ footer {
         align-items: center;
     }
 }
-
+    
