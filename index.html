@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Nest by Vijaya Builders & Developers</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -14,15 +14,22 @@
         <div class="logo-container">
             <img src="logo.png" alt="Vijaya Builders Logo">
         </div>
-        <nav>
-            <a href="#">Projects</a>
-            <a href="#">Company</a>
-            <a href="#">Contact</a>
-        </nav>
-        <div class="search-icon">
-            <i class="fa fa-search" aria-hidden="true"></i>
+        <!-- Menu Icon -->
+        <div class="menu-icon" id="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </header>
+
+    <!-- Navigation Menu (Hidden by default) -->
+    <nav class="nav-menu" id="nav-menu">
+        <ul class="menu-list">
+            <li style="--delay: 0s;"><a href="#"><i class="fa fa-briefcase"></i> Projects</a></li>
+            <li style="--delay: 0.1s;"><a href="#"><i class="fa fa-building"></i> Company</a></li>
+            <li style="--delay: 0.2s;"><a href="#"><i class="fa fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -98,23 +105,24 @@
         let scrollTimeout;
 
         window.addEventListener('scroll', function() {
-            // Clear the previous timeout
             clearTimeout(scrollTimeout);
-
-            // Set a new timeout
             scrollTimeout = setTimeout(function() {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
                 if (scrollTop > lastScrollTop) {
-                    // Scroll down - hide the header
-                    header.style.top = '-60px'; // Moves the header up
+                    header.style.top = '-60px';
                 } else {
-                    // Scroll up - show the header
                     header.style.top = '0';
                 }
-
                 lastScrollTop = scrollTop;
-            }, 50); // Delay time in milliseconds (e.g., 100ms)
+            }, 50);
+        });
+
+        // JavaScript for toggling the menu
+        const menuIcon = document.getElementById('menu-icon');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
         });
     </script>
 </body>
