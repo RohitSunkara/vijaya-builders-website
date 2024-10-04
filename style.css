@@ -14,6 +14,21 @@ body {
     overflow-x: hidden;
 }
 
+/* Center Image Styling */
+.center-image {
+    flex-grow: 1; /* Allows it to take up the space between logo and menu icon */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers the image vertically */
+    height: 100%; /* Make the container take the full height of the header */
+    margin-top: 22px; /* Moves the image down by 10px */
+}
+
+.center-image img {
+    max-height: 70px; /* Adjust to fit within the header */
+    width: auto;
+}
+
 /* Optimized and Smaller Menu Icon */
 .menu-icon {
     display: flex;
@@ -38,7 +53,7 @@ body {
 /* Unique Menu Icon Animation on Click */
 .menu-icon.open div:nth-child(1) {
     transform: translateY(6px) rotate(45deg); /* Rotate the top bar */
-    background-color: #333; /* Change color */
+    background-color: #333333e6; /* Change color */
 }
 
 .menu-icon.open div:nth-child(2) {
@@ -47,7 +62,7 @@ body {
 
 .menu-icon.open div:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg); /* Rotate the bottom bar */
-    background-color: #333; /* Change color */
+    background-color: #333333e6; /* Change color */
 }
 
 /* Additional click effect */
