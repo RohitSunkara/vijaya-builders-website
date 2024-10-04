@@ -8,95 +8,88 @@
 /* Body Styling */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: rgba(240, 240, 240, 0.8); /* Light grey background */
+    background-color: rgba(240, 240, 240, 0.8);
     color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
 }
 
-/* Unique Menu Icon */
+/* Optimized and Smaller Menu Icon */
 .menu-icon {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 35px;
-    height: 35px;
+    width: 25px; /* Smaller width */
+    height: 20px; /* Smaller height */
     cursor: pointer;
     margin-right: 20px;
-    transition: all 0.6s ease-in-out; /* Smooth overall transform */
-    position: relative; /* Needed for pseudo-elements */
+    position: relative;
+    transition: all 0.4s ease-in-out; /* Adjusted for smooth transition */
 }
 
 .menu-icon div {
     width: 100%;
-    height: 4px;
-    background-color: #ff6600; /* Set to orange */
+    height: 3px; /* Thinner bars */
+    background-color: #ff6600;
     border-radius: 2px;
-    transition: all 0.6s ease-in-out; /* Smooth transition for each bar */
+    transition: all 0.4s ease-in-out;
 }
 
-/* Complex Menu Icon Animation on Hover */
-.menu-icon:hover {
-    transform: rotate(180deg) scale(1.2); /* Rotate and scale the whole icon */
+/* Unique Menu Icon Animation on Click */
+.menu-icon.open div:nth-child(1) {
+    transform: translateY(6px) rotate(45deg); /* Rotate the top bar */
+    background-color: #333; /* Change color */
 }
 
-/* Complex hover effects on individual lines */
-.menu-icon:hover div:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-    background-color: #ff6600; /* Keep the color consistent */
+.menu-icon.open div:nth-child(2) {
+    opacity: 0; /* Fade out the middle bar */
 }
 
-.menu-icon:hover div:nth-child(2) {
-    opacity: 0; /* Make the middle line disappear */
+.menu-icon.open div:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg); /* Rotate the bottom bar */
+    background-color: #333; /* Change color */
 }
 
-.menu-icon:hover div:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-    background-color: #ff6600; /* Keep the color consistent */
-}
-
-/* Additional animated pseudo-element effect for extra uniqueness */
-.menu-icon::before,
-.menu-icon::after {
+/* Additional click effect */
+.menu-icon.open::before,
+.menu-icon.open::after {
     content: '';
     position: absolute;
     width: 100%;
-    height: 4px;
+    height: 3px;
     background-color: #ff6600;
     border-radius: 2px;
-    transition: all 0.6s ease-in-out;
-    opacity: 0; /* Initially hidden */
+    transition: all 0.4s ease-in-out;
+    opacity: 0.5;
 }
 
-/* Animate pseudo-elements on hover */
-.menu-icon:hover::before {
-    top: -12px;
-    transform: rotate(45deg);
-    opacity: 1;
+/* Animate pseudo-elements on click */
+.menu-icon.open::before {
+    top: -8px;
+    transform: rotate(25deg);
 }
 
-.menu-icon:hover::after {
-    bottom: -12px;
-    transform: rotate(-45deg);
-    opacity: 1;
+.menu-icon.open::after {
+    bottom: -8px;
+    transform: rotate(-25deg);
 }
 
 /* Navigation Menu */
 .nav-menu {
     position: fixed;
-    top: 60px; /* Adjust to match header height */
+    top: 60px;
     right: 20px;
     width: 220px;
-    background: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
-    display: none; /* Hidden by default */
+    display: none;
     flex-direction: column;
     gap: 10px;
-    z-index: 2000; /* Ensure it stays on top of other elements */
-    border-radius: 15px; /* Rounded edges */
-    animation: menuPopup 0.6s ease forwards; /* Complex animation */
+    z-index: 2000;
+    border-radius: 15px;
+    animation: menuPopup 0.6s ease forwards;
 }
 
 /* Show the menu when toggled */
@@ -116,7 +109,7 @@ body {
     animation: slideIn 0.5s forwards;
     animation-delay: var(--delay);
     display: flex;
-    align-items: center; /* Center icon and text */
+    align-items: center;
 }
 
 /* Menu Item Link Styling */
@@ -133,8 +126,8 @@ body {
 
 /* Icons for Menu Items */
 .menu-list i {
-    margin-right: 10px; /* Space between icon and text */
-    color: #ff6600; /* Icon color */
+    margin-right: 10px;
+    color: #ff6600;
 }
 
 /* Hover Effect */
@@ -169,18 +162,18 @@ body {
 
 /* Header Styling */
 header {
-    background-color: rgba(240, 240, 240, 0.8); /* 80% transparent light grey */
+    background-color: rgba(240, 240, 240, 0.8);
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px; /* Fixed header height */
-    position: fixed; /* Fix the header at the top of the page */
+    height: 60px;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    z-index: 1000; /* Ensure it stays on top of other content */
-    transition: top 0.3s; /* Smooth transition for hide/show */
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.3s;
 }
 
 .logo-container {
@@ -198,30 +191,30 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f4f4f4; /* Fallback background color */
-    overflow: hidden; /* Hide overflow to ensure no scrollbars appear */
-    position: relative; /* Set relative position for absolute children */
-    margin-top: 60px; /* Add margin to offset fixed header */
-    z-index: 1; /* Make sure it's behind the nav menu */
+    height: 100vh;
+    background-color: #f4f4f4;
+    overflow: hidden;
+    position: relative;
+    margin-top: 60px;
+    z-index: 1;
 }
 
 /* Background Image Container */
 .hero-image-container {
     position: relative;
-    width: 80%; /* Adjust width as needed */
-    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    overflow: hidden; /* Hide overflow */
-    border-radius: 8px; /* Rounded corners */
-    animation: backgroundZoom 10s ease-in-out infinite alternate; /* Apply background animation */
-    z-index: 1; /* Ensure it's beneath the text */
+    width: 80%;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 8px;
+    animation: backgroundZoom 10s ease-in-out infinite alternate;
+    z-index: 1;
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the entire container */
+    object-fit: cover;
 }
 
 /* Background Zoom Animation */
@@ -230,72 +223,72 @@ header {
         transform: scale(1);
     }
     100% {
-        transform: scale(1.1); /* Zoom in the background slightly */
+        transform: scale(1.1);
     }
 }
 
 /* Text Styling */
 .hero-text {
-    position: absolute; /* Absolute positioning to overlay text */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Align exactly to center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center the text horizontally */
-    color: black; /* Text color */
+    align-items: center;
+    color: black;
     text-align: center;
-    z-index: 2; /* Ensure the text is on top of the image */
-    width: 100%; /* Ensure the text container spans the full width */
-    max-width: 100%; /* Prevent the text from being squished */
-    padding: 0 20px; /* Add padding for better spacing */
-    box-sizing: border-box; /* Include padding in the width */
-    opacity: 0; /* Initially hidden */
-    animation: textFadeIn 2s ease-in-out forwards 1s; /* Text animation */
+    z-index: 2;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: textFadeIn 2s ease-in-out forwards 1s;
 }
 
 /* Text Fade In and Move Up Animation */
 @keyframes textFadeIn {
     0% {
         opacity: 0;
-        transform: translate(-50%, -40%); /* Start slightly lower */
+        transform: translate(-50%, -40%);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%); /* Move to the original centered position */
+        transform: translate(-50%, -50%);
     }
 }
 
 .hero-text h1 {
-    font-size: 4vw; /* Responsive text sizing */
+    font-size: 4vw;
     margin-bottom: 20px;
 }
 
 .hero-text p {
-    font-size: 1.5vw; /* Responsive text sizing */
+    font-size: 1.5vw;
     margin-bottom: 20px;
 }
 
 /* "Learn More" Button Styling */
 .hero-text button {
     position: relative;
-    background-color: #ff6600; /* Button color */
+    background-color: #ff6600;
     color: white;
     padding: 15px 30px;
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 30px; /* Make the button more rounded */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow for a 3D effect */
-    overflow: hidden; /* Hide overflow for shine effect */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* "Learn More" Button Hover Effect */
 .hero-text button:hover {
-    transform: scale(1.1); /* Slightly scale up the button */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Enhance shadow */
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Add a shine effect using a pseudo-element */
@@ -308,12 +301,12 @@ header {
     height: 100%;
     background: rgba(255, 255, 255, 0.4);
     transform: skewX(-20deg);
-    transition: left 0.5s ease; /* Smooth transition */
+    transition: left 0.5s ease;
 }
 
 /* Shine effect on hover */
 .hero-text button:hover::after {
-    left: 125%; /* Move shine across the button */
+    left: 125%;
 }
 
 /* Ripple Effect */
@@ -344,15 +337,15 @@ header {
 
 /* Footer Styling */
 footer {
-    background-color: rgba(240, 240, 240, 0.8); /* Light grey background */
+    background-color: rgba(240, 240, 240, 0.8);
     padding: 40px 20px;
     color: #333;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-around; /* Evenly distribute columns */
-    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    justify-content: space-around;
+    flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 20px;
     text-align: left;
@@ -360,13 +353,13 @@ footer {
 
 .footer-column {
     flex: 1;
-    min-width: 150px; /* Minimum width for each column */
+    min-width: 150px;
 }
 
 .footer-column h4 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #555; /* Grey color for titles */
+    color: #555;
 }
 
 .footer-column ul {
@@ -380,13 +373,13 @@ footer {
 
 .footer-column a {
     color: #333;
-    font-size: 14px; /* Smaller text */
+    font-size: 14px;
     text-decoration: none;
-    transition: color 0.3s ease; /* Animation for hover effect */
+    transition: color 0.3s ease;
 }
 
 .footer-column a:hover {
-    color: #ff6600; /* Change color on hover */
+    color: #ff6600;
 }
 
 /* Footer Bottom Section */
@@ -402,7 +395,7 @@ footer {
 }
 
 .footer-bottom p {
-    color: #555; /* Grey color */
+    color: #555;
     margin: 0;
 }
 
@@ -419,7 +412,7 @@ footer {
 }
 
 .footer-social a:hover {
-    color: #ff6600; /* Change color on hover */
+    color: #ff6600;
 }
 
 /* Animation */
@@ -442,4 +435,3 @@ footer {
         align-items: center;
     }
 }
-    
