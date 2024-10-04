@@ -14,7 +14,7 @@
         <div class="logo-container">
             <img src="logo.png" alt="Vijaya Builders Logo">
         </div>
-        <!-- Menu Icon -->
+        <!-- Optimized Menu Icon -->
         <div class="menu-icon" id="menu-icon">
             <div></div>
             <div></div>
@@ -117,11 +117,12 @@
             }, 50);
         });
 
-        // JavaScript for toggling the menu
+        // JavaScript for toggling the menu with animation
         const menuIcon = document.getElementById('menu-icon');
         const navMenu = document.getElementById('nav-menu');
 
         menuIcon.addEventListener('click', () => {
+            menuIcon.classList.toggle('open'); // Toggle the class for animation
             navMenu.classList.toggle('show');
         });
     </script>
