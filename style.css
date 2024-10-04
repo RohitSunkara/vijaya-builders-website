@@ -1,0 +1,348 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(240, 240, 240, 0.8); /* Light grey background */
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Header Styling */
+header {
+    background-color: rgba(240, 240, 240, 0.8); /* 80% transparent light grey */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px; /* Fixed header height */
+    position: fixed; /* Fix the header at the top of the page */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top of other content */
+    transition: top 0.3s; /* Smooth transition for hide/show */
+}
+
+.logo-container {
+    margin-left: 20px;
+}
+
+.logo-container img {
+    height: 50px;
+    width: auto;
+    margin-top: 8px;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: 500;
+    position: relative; /* For underline animation */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Animation for the underline effect */
+nav a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ff6600;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+/* Hover Effect */
+nav a:hover {
+    color: #ff6600; /* Change text color on hover */
+}
+
+/* Underline Effect on Hover */
+nav a:hover::before {
+    width: 100%; /* Full underline width on hover */
+}
+
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f4f4; /* Fallback background color */
+    overflow: hidden; /* Hide overflow to ensure no scrollbars appear */
+    position: relative; /* Set relative position for absolute children */
+    margin-top: 60px; /* Add margin to offset fixed header */
+}
+
+
+/* Background Image Container */
+.hero-image-container {
+    position: relative;
+    width: 80%; /* Adjust width as needed */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    overflow: hidden; /* Hide overflow */
+    border-radius: 8px; /* Rounded corners */
+    animation: backgroundZoom 10s ease-in-out infinite alternate; /* Apply background animation */
+    z-index: 1; /* Ensure it's beneath the text */
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container */
+}
+
+/* Background Zoom Animation */
+@keyframes backgroundZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1); /* Zoom in the background slightly */
+    }
+}
+
+/* Text Styling */
+.hero-text {
+    position: absolute; /* Absolute positioning to overlay text */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Align exactly to center */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center; /* Center the text horizontally */
+    color: black; /* Text color */
+    text-align: center; /* Center text */
+    z-index: 2; /* Ensure the text is on top of the image */
+    width: 100%; /* Ensure the text container spans the full width */
+    max-width: 100%; /* Prevent the text from being squished */
+    padding: 0 20px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Include padding in the width */
+    opacity: 0; /* Initially hidden */
+    animation: textFadeIn 2s ease-in-out forwards 1s; /* Text animation */
+}
+
+/* Text Fade In and Move Up Animation */
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%); /* Start slightly lower */
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%); /* Move to the original centered position */
+    }
+}
+
+.hero-text h1 {
+    font-size: 4vw; /* Responsive text sizing */
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.5vw; /* Responsive text sizing */
+    margin-bottom: 20px;
+}
+
+/* "Learn More" Button Styling */
+.hero-text button {
+    position: relative;
+    background-color: #ff6600; /* Button color */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 30px; /* Make the button more rounded */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow for a 3D effect */
+    overflow: hidden; /* Hide overflow for shine effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+/* "Learn More" Button Hover Effect */
+.hero-text button:hover {
+    transform: scale(1.1); /* Slightly scale up the button */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Enhance shadow */
+}
+
+/* Add a shine effect using a pseudo-element */
+.hero-text button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease; /* Smooth transition */
+}
+
+/* Shine effect on hover */
+.hero-text button:hover::after {
+    left: 125%; /* Move shine across the button */
+}
+
+/* Ripple Effect */
+.hero-text button:active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleEffect 0.6s ease-out;
+}
+
+/* Ripple Animation */
+@keyframes rippleEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* About Section */
+.about {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Project Section */
+.projects {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+}
+
+.project {
+    margin: 20px 0;
+}
+
+/* Footer Styling */
+footer {
+    background-color: rgba(240, 240, 240, 0.8); /* Light grey background */
+    padding: 40px 20px;
+    color: #333;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Evenly distribute columns */
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    gap: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px; /* Minimum width for each column */
+}
+
+.footer-column h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555; /* Grey color for titles */
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    color: #333;
+    font-size: 14px; /* Smaller text */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Animation for hover effect */
+}
+
+.footer-column a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    border-top: 1px solid #ccc;
+    padding: 20px 0;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    color: #555; /* Grey color */
+    margin: 0;
+}
+
+/* Social Media Icons */
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+
+/* Animation */
+.footer-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
