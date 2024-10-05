@@ -24,7 +24,7 @@ body {
 }
 
 .center-image img {
-    max-height: 43px; /* Adjust to fit within the header */
+    max-height: 60px; /* Adjust to fit within the header */
     width: auto;
 }
 
