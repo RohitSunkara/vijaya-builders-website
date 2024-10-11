@@ -50,7 +50,7 @@ header {
 }
 
 .center-image img {
-    max-height: 55px;
+    max-height: 43px;
     width: auto;
 }
 
@@ -326,6 +326,22 @@ footer {
     align-items: center;
     flex-wrap: wrap;
 }
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #ff6600;
+}
+
 
 /* Animations */
 @keyframes slideIn {
